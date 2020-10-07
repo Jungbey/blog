@@ -2,10 +2,10 @@
 menu:
   home: /
   archives: /archives
-  categories: /categories
-  tags: /tags
-  friends: /friends
-  about: /about
+#  categories: /categories
+#  tags: /tags
+#  friends: /friends
+#  about: /about
 
 #logo
 logo: /images/logo.png
@@ -27,14 +27,14 @@ rss: /atom.xml
 
 #follow 按顺序展示
 follow:
-  github: 'https://github.com/shixiaohu2206'
-  facebook: 'https://www.facebook.com/shi.xiaohu.5'
-  instagram: 'https://www.instagram.com/shi_xiaohu/'
+  github: 'https://github.com/jungbey'
+  QQ: 'https://qm.qq.com/cgi-bin/qm/qr?k=O3q2pCzqQT2LnwYobrJziEjwEIQsaZ4O&noverify=0'
+  # facebook: 'https://www.facebook.com/shi.xiaohu.5'
+  # instagram: 'https://www.instagram.com/shi_xiaohu/'
   # twitter: 'https://github.com/shixiaohu2206'
   # weixin: 'https://github.com/shixiaohu2206'
   # alipay: 'https://github.com/shixiaohu2206'
   # zhihu: 'https://github.com/shixiaohu2206'
-  # QQ: 'https://github.com/shixiaohu2206'
   # weibo: 'https://github.com/shixiaohu2206'
   # qqkongjian: 'https://github.com/shixiaohu2206'
   # google: 'https://github.com/shixiaohu2206'
@@ -78,8 +78,8 @@ baidu_push: true
 
 #reward
 reward:
-  weixin: 'images/weixin.png'
-  zhifubao: 'images/zhifubao.png'
+  # weixin: 'images/weixin.png'
+  # zhifubao: 'images/zhifubao.png'
 
 #service worker 配合pjax
 service_worker:
