@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    
+    <title>
+      使用Hexo搭建博客并部署到github pages - Jungbey&#39;s blog
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用Hexo搭建博客"><span class="toc-text">使用Hexo搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Hexo"><span class="toc-text">安装 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建-Hexo-项目"><span class="toc-text">创建 Hexo 项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-Hexo"><span class="toc-text">配置 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#书写文章"><span class="toc-text">书写文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些Hexo的指令"><span class="toc-text">一些Hexo的指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#init"><span class="toc-text">init</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate"><span class="toc-text">generate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#server"><span class="toc-text">server</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置主题"><span class="toc-text">设置主题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#将项目部署到Github-Pages"><span class="toc-text">将项目部署到Github Pages</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Jungbey</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Jungbey</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/jungbey" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://qm.qq.com/cgi-bin/qm/qr?k=O3q2pCzqQT2LnwYobrJziEjwEIQsaZ4O&amp;noverify=0" target="_block">
+              <span class="iconfont icon-QQ"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">使用Hexo搭建博客并部署到github pages</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/10/10</span>
+        </span>
+
+        
+
+        
+        
+        
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h1 id="使用Hexo搭建博客">使用Hexo搭建博客<a class="post-anchor" href="#使用Hexo搭建博客"></a></h1><blockquote>
+<p>相关链接🔗： <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">安装Hexo</a>、<a href="https://hexo.io/zh-cn/docs/github-pages" target="_blank" rel="noopener">将 Hexo 部署到 GitHub Pages</a></p>
+</blockquote>
+<h2 id="安装-Hexo">安装 Hexo<a class="post-anchor" href="#安装-Hexo"></a></h2><p>这里只需要直接根据第一个链接提供的指令安装即可：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm  install -g hexo-cli</span><br></pre></td></tr></tbody></table></figure>
+
+<p>将hexo添加到环境变量</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ echo 'PATH="$PATH:./node_modules/.bin"' >> ~/.profile</span><br></pre></td></tr></tbody></table></figure>
+<p>至此，hexo已经安装完成，可以在cmd中执行hexo的相关指令</p>
+<h2 id="创建-Hexo-项目">创建 Hexo 项目<a class="post-anchor" href="#创建-Hexo-项目"></a></h2><p>安装完成之后，执行以下指令，即可创建一个hexo项目</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init <porject_name></span><br><span class="line">$ <span class="built_in">cd</span> <project_name></span><br><span class="line">$ yarn</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="配置-Hexo">配置 Hexo<a class="post-anchor" href="#配置-Hexo"></a></h2><p>hexo项目的配置信息都在根目录中的 _config.yml 中，可以在此更改配置参数</p>
+<p>具体的配置参数可以在此查看：<a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">Hexo配置</a></p>
+<p>在此，我主要设置了一下网站的标题以、作者名、文章的 <a href="https://hexo.io/zh-cn/docs/permalinks" target="_blank" rel="noopener">永久链接</a> 格式及网站链接。</p>
+<h2 id="书写文章">书写文章<a class="post-anchor" href="#书写文章"></a></h2><p>执行以下命令来创建一篇新的文章</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] <title</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>layout 为文章的布局，Hexo有三种默认布局： post、page和draft，创建文章时，会根据布局的不同而将文件放入不同的文件夹。layout 可以不填，默认为post，在创建时存入source/_post 目录。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">布局</th>
+<th align="center">路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">post</td>
+<td align="center">source/_posts</td>
+</tr>
+<tr>
+<td align="center">page</td>
+<td align="center">source/</td>
+</tr>
+<tr>
+<td align="center">draft</td>
+<td align="center">source/_drafts</td>
+</tr>
+</tbody></table>
+<ul>
+<li>title 即为文章的标题，为必须项</li>
+</ul>
+<p>创建文章后，会在相应的文件夹中新建对应的md文件，文件中会有默认的内容来保存文章的相关信息, 分别为 title、date、及tags.</p>
+<ul>
+<li>title：即为文章的标题，默认为创建文章时所设定的标题</li>
+<li>date：创建文章的日期</li>
+<li>tags：文章的标签</li>
+</ul>
+<p>可以通过修改以上内容来修改文章的信息</p>
+<p>然后，就可以在下面编辑自己的文章内容进行创作啦 🎉</p>
+<h2 id="一些Hexo的指令">一些Hexo的指令<a class="post-anchor" href="#一些Hexo的指令"></a></h2><blockquote>
+<p>这里只列出一些我认为必须要知道的一些指令，更多指令可以在此查看： <a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">Hexo指令</a></p>
+</blockquote>
+<h3 id="init">init<a class="post-anchor" href="#init"></a></h3><pre><code>$ hexo init [folder]</code></pre><p>新建一个Hexo项目，即一个博客网站，folder为文件夹的名称，如果没有设置，Hexo会默认在当前的文件夹建立项目。</p>
+<h3 id="new">new<a class="post-anchor" href="#new"></a></h3><pre><code>$ hexo new [layout] <title></code></pre><p>新建一篇文章，如果文章的标题中有空格，则需要用引号括起来</p>
+<pre><code>$ hexo new "post title with whitespace"</code></pre><h3 id="generate">generate<a class="post-anchor" href="#generate"></a></h3><pre><code>$ hexo generate</code></pre><p>or</p>
+<pre><code>$ hexo g</code></pre><p>此指令可以生成静态文件，保存在<code>public/</code>目录中</p>
+<h3 id="server">server<a class="post-anchor" href="#server"></a></h3><pre><code>$ hexo server</code></pre><p>or</p>
+<pre><code>$ hexo s</code></pre><p>启用本地服务，执行后可以在 <code>http://localhost:4000</code> 中访问该项目的网页</p>
+<h2 id="设置主题">设置主题<a class="post-anchor" href="#设置主题"></a></h2><h1 id="将项目部署到Github-Pages">将项目部署到Github Pages<a class="post-anchor" href="#将项目部署到Github-Pages"></a></h1><blockquote>
+<p>参考链接：<a href="https://hexo.io/zh-cn/docs/github-pages" target="_blank" rel="noopener">将 Hexo 部署到 GitHub Pages</a></p>
+</blockquote>
+<p>这里主要就是根据上面链接中的教程一步一步进行，为了更加方便，会使用到 <a href="https://travis-ci.com/" target="_blank" rel="noopener">Travis CI</a>，可以直接使用github账号注册</p>
+<p><code>部署</code> 的大致步骤为：</p>
+<ol>
+<li>在 <a href="https://github.com/" target="_blank" rel="noopener">github</a> 中新建一个repository并将项目推送到该repository中；</li>
+<li>在 <a href="https://github.com/marketplace/travis-ci" target="_blank" rel="noopener">这里 </a> 将 Travis CI 添加到 github账户中；</li>
+<li>前往 github 中的 <a href="https://github.com/settings/installations" target="_blank" rel="noopener">Applications settings</a> 给予Travis CI 访问你的repository 的权限；</li>
+<li>在 github 中  <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">新建 Personal Access Token</a>， 只勾选 <code>repo</code> 权限并生成Token，生成后复制该Token；</li>
+<li>在 <a href="https://travis-ci.com/" target="_blank" rel="noopener">这里</a> 找到并前往 相应的 repository 的 <code>设置页面</code>，在<strong>Environment Variables</strong>下新建一个环境变量，<strong>Name</strong>设置为<code>GH_TOKEN</code>, <strong>Value</strong>为之前复制的Token，然后点击<strong>Add</strong>保存；<blockquote>
+<p><code>设置(settings)</code>在打开的repository管理页面右边的 More options 中, 点击即可进入<code>设置页面</code> </p>
+</blockquote>
+</li>
+<li>在hexo项目的根目录中新建一个 <code>.travis.yml</code> 文件：<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sudo: false</span><br><span class="line">language: node_js</span><br><span class="line">node_js:</span><br><span class="line">  - 10 # use nodejs v10 LTS</span><br><span class="line">cache: npm</span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">    - master # build master branch only</span><br><span class="line">script:</span><br><span class="line">  - hexo generate # generate static files</span><br><span class="line">deploy:</span><br><span class="line">  provider: pages</span><br><span class="line">  skip-cleanup: true</span><br><span class="line">  github-token: $GH_TOKEN</span><br><span class="line">  keep-history: true</span><br><span class="line">  on:</span><br><span class="line">    branch: master</span><br><span class="line">  local-dir: public</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+</body></html>
+
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://jungbey.xyz">Jungbey</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://jungbey.xyz/2020/10/10/2020-10-10/">http://jungbey.xyz/2020/10/10/2020-10-10/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://jungbey.xyz">Jungbey</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="http://jungbey.xyz">Jungbey</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
