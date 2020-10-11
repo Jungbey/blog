@@ -145,10 +145,15 @@ $ yarn</code></pre><h2 id="配置-Hexo"><a href="#配置-Hexo" class="headerlink
 <p><code>设置(settings)</code>在打开的repository管理页面右边的 More options 中, 点击即可进入<code>设置页面</code> </p>
 </blockquote>
 </li>
-<li>在hexo项目的根目录中新建一个 <code>.travis.yml</code> 文件：</li>
+<li>在hexo项目的根目录中新建一个 <code>.travis.yml</code> 文件, 并编辑以下内容：</li>
 </ol>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sudo:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">10</span> <span class="comment"># use nodejs v10 LTS</span></span><br><span class="line"><span class="attr">cache:</span> <span class="string">npm</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line"><span class="attr">only:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">master</span> <span class="comment"># build master branch only</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">generate</span> <span class="comment"># generate static files</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"> <span class="attr">provider:</span> <span class="string">pages</span></span><br><span class="line"> <span class="attr">skip-cleanup:</span> <span class="literal">true</span></span><br><span class="line"> <span class="attr">github-token:</span> <span class="string">$GH_TOKEN</span></span><br><span class="line"> <span class="attr">keep-history:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line"><span class="attr">local-dir:</span> <span class="string">public</span></span><br></pre></td></tr></table></figure>
 
+<p>然后推送到远程仓库中<br>7. 在gihub的repository设置界面，修改<code>Github Pages</code>的部署分支为<code>gh-pages</code>；</p>
+<blockquote>
+<p>教程中部署的网页默认的url为<code>https://&lt;你的 GitHub 用户名&gt;.github.io/&lt;repository 的名字&gt;</code>, 可以通过<code>域名解析</code>来更改访问链接。</p>
+</blockquote>
+<p>经过以上步骤即可完成页面的部署，在编写文章后推送到远程仓库即可触发Travis CI的自动部署</p>
 
       
     </div>
