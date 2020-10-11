@@ -140,7 +140,19 @@ $ yarn</code></pre><h2 id="配置-Hexo"><a href="#配置-Hexo" class="headerlink
 <pre><code>$ hexo g</code></pre><p>此指令可以生成静态文件，保存在<code>public/</code>目录中</p>
 <h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><pre><code>$ hexo server</code></pre><p>or</p>
 <pre><code>$ hexo s</code></pre><p>启用本地服务，执行后可以在 <code>http://localhost:4000</code> 中访问该项目的网页</p>
-<h2 id="设置主题"><a href="#设置主题" class="headerlink" title="设置主题"></a>设置主题</h2><h1 id="将项目部署到Github-Pages"><a href="#将项目部署到Github-Pages" class="headerlink" title="将项目部署到Github Pages"></a>将项目部署到Github Pages</h1><blockquote>
+<h2 id="设置主题"><a href="#设置主题" class="headerlink" title="设置主题"></a>设置主题</h2><blockquote>
+<p>参考链接： <a href="https://hexo.io/zh-cn/docs/themes" target="_blank" rel="noopener">hexo主题</a></p>
+</blockquote>
+<p>主要步骤为：</p>
+<ol>
+<li>在 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">这里</a> 选择一个想要的主题（点击图片可以预览页面，点击标题可以进入相应的github仓库）;</li>
+<li>在github仓库复制clone链接，将其clone到项目的theme目录下；<blockquote>
+<p>这里用的是一般下载主题的方法，可以查看repository的<code>readme</code>来查看其下载方式；</p>
+</blockquote>
+</li>
+<li>修改<code>_config.yml</code>中的参数<code>theme</code>，值为下载在<code>theme/</code>下相应主题的文件夹名称。</li>
+</ol>
+<h1 id="将项目部署到Github-Pages"><a href="#将项目部署到Github-Pages" class="headerlink" title="将项目部署到Github Pages"></a>将项目部署到Github Pages</h1><blockquote>
 <p>参考链接：<a href="https://hexo.io/zh-cn/docs/github-pages" target="_blank" rel="noopener">将 Hexo 部署到 GitHub Pages</a></p>
 </blockquote>
 <p>这里主要就是根据上面链接中的教程一步一步进行，为了更加方便，会使用到 <a href="https://travis-ci.com/" target="_blank" rel="noopener">Travis CI</a>，可以直接使用github账号注册</p>
