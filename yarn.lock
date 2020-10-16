@@ -1580,6 +1580,11 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
+slug@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/slug/-/slug-3.5.1.tgz#4279aa760da705252783bbefe3d70de235ef2cf7"
+  integrity sha512-ei0JnJzg8HKhLunZy+vpNlILRRradfaAQ+p2YEI4b4r8yX/5TlFi1JSwcYQCg7INZxdTC43BT68rHMkRxzn7Xg==
+
 source-map-resolve@^0.5.2:
   version "0.5.3"
   resolved "https://registry.npm.taobao.org/source-map-resolve/download/source-map-resolve-0.5.3.tgz#190866bece7553e1f8f267a2ee82c606b5509a1a"
