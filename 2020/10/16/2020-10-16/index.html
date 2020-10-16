@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Jungbey"><title>研发培训-Flex布局 · Jungbey's blog</title><meta name="description" content="参考链接： MDN | 弹性盒子、Flex 布局教程：语法篇、A Complete Guide to Flexbox本文中部分内容也援引自上述文章
+
+介绍Flex 布局模块目标在于提供一个更有效地布局、对齐方式，并且能够使父元素在子元素的大小未知或动态变化情况下仍然能够分配好子元素之间的间隙。
+其主"><meta name="keywords" content="博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 4.2.1"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Jungbey's blog</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a href="https://github.com/jungbey" target="_blank" rel="noopener"><i class="fa fa-github"></i></a></li><li><a href="jacbeywan@gmail.com"><i class="fa fa-envelope"></i></a></li><li><a href="https://qm.qq.com/cgi-bin/qm/qr?k=O3q2pCzqQT2LnwYobrJziEjwEIQsaZ4O&amp;noverify=0" target="_blank" rel="noopener"><i class="fa fa-qq"></i></a></li></ul><div class="footer"><div class="p"> <span>© 2017 - 2020 </span><i class="fa fa-star"></i><span> Jungbey</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div><div class="beian"><a href="http://www.beian.miit.gov.cn/" target="_blank">赣ICP备20001204号</a><span style="height:10px;margin-left: 10px;">|</span><img src="https://qn.jixian.io/gongan.png" style="height:10px;margin-left: 10px;position: relative;top: 1px;"><span style="margin-left: 2px;"></span></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>研发培训-Flex布局</a></h3></div><div class="post-content"><blockquote>
+<p>参考链接： <a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank" rel="noopener">MDN | 弹性盒子</a>、<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">Flex 布局教程：语法篇</a>、<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">A Complete Guide to Flexbox</a><br>本文中部分内容也援引自上述文章</p>
+</blockquote>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Flex 布局模块目标在于提供一个更有效地布局、对齐方式，并且能够使父元素在子元素的大小未知或动态变化情况下仍然能够分配好子元素之间的间隙。</p>
+<p>其主要思想是使父元素能够调节子元素的高度、宽度和排布的顺序，从而能够最好地适应可用布局空间（能够适应不同的设备和不同大小的屏幕）。设定为flex布局的父元素（容器）能够放大子元素使之尽可能填充可用空间，也可以收缩子元素使之不溢出。</p>
+<style>
+  .train-container {
+    margin: 10px 0;
+    border: 3px solid #e0dfcc;
+    background: #f5f2f0;
+    border-radius: 10px;
+  }
+
+  .train-content {
+    margin: 5px;
+    color: #FFF;
+    border-radius: 5px;
+    background: rgb(236, 169, 33);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .square {
+    width: 50px;
+    height: 50px;
+  }
+
+  .resize-box {
+    width: 400px;
+    min-width: 100px;
+    max-width: 500px;
+    height: 120px;
+    min-height: 50px;
+    max-height: 500px;
+    padding: 10px;
+    resize: both;
+    overflow: auto;
+  }
+
+  .flex-box {
+    display: flex;
+  }
+
+  .flex-son {
+    flex: 60px;
+    height: 50px;
+  }
+
+</style>
+
+<div
+class="resize-box flex-box train-container"
+style="
+  width: 500px;
+  align-items: center;
+  flex-flow: row wrap;
+  "
+>
+  <div class="train-content" style="flex: 60px;height: 50px" >1</div>
+  <div class="train-content" style="flex: 60px;height: 50px" >2</div>
+  <div class="train-content" style="flex: 30px;height: 50px" >3</div>
+  <div class="train-content" style="flex: 60px;height: 50px" >4</div>
+  <div class="train-content" style="flex: 80px;height: 50px" >5</div>
+  <div class="train-content" style="flex: 60px;height: 50px" >6</div>
+  <div class="train-content" style="flex: 60px;height: 50px" >7</div>
+  <div class="train-content" style="flex: 60px;height: 50px" >8</div>
+</div>
+
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。</p>
+<p>任何容器都能被指定为Flex布局：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.train-</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>采用Flex布局元素被称为<code>flex 容器(flex train-)</code>, 简称<code>容器</code>，它的子元素被成为<code>flex 项目(flex item)</code>, 简称<code>项目</code>。</p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/00-basic-terminology.svg" alt="图解"></p>
+<p>容器默认存在两个轴，<code>主轴</code>及<code>交叉轴</code>。<br>项目将沿着<code>主轴</code>(从<code>main-start</code>到<code>main-end</code>)或者<code>交叉轴</code>(从<code>cross-start</code>到<code>cross-end</code>)进行排列(默认沿着主轴排列)。<br><strong>主轴(main-axis)</strong>: 子元素布局的主要方向轴，不一定是水平的，它取决于<code>flex-direction</code>属性；<br><strong>交叉轴(cross axis)</strong>: 垂直于主轴的轴被称为交叉轴，其方向取决于主轴的方向；</p>
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><ul>
+<li><strong><em>flex-direction:</em></strong><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-train-</span> &#123;</span><br><span class="line">  <span class="attribute">flex-dorection</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+此属性能建立主轴的方向，由此来定义项目在容器内的排列方向<ul>
+<li><code>row</code>：主轴为水平方向，main start 在其左端<div
+    class="flex-box train-container"
+    style="
+     width: 200px;
+     height: 60px;
+     flex-direction: row;
+  "
+>
+  <div class="flex-son train-content">1</div>
+  <div class="flex-son train-content">2</div>
+  <div class="flex-son train-content">3</div>
+</div></li>
+<li><code>row-reverse</code>: 主轴为水平方向，main start在其右端<div
+    class="flex-box train-container"
+    style="
+     width: 200px;
+     height: 60px;
+     flex-direction: row-reverse;
+  "
+>
+  <div class="flex-son train-content">1</div>
+  <div class="flex-son train-content">2</div>
+  <div class="flex-son train-content">3</div>
+</div></li>
+<li><code>column</code>: 主轴为竖直方向，main start在其上沿<div
+    class="flex-box train-container"
+    style="
+     width: 60px;
+     height: 150px;
+     flex-direction: column;
+  "
+>
+  <div class="flex-son train-content">1</div>
+  <div class="flex-son train-content">2</div>
+  <div class="flex-son train-content">3</div>
+</div></li>
+<li><code>column-reverse</code>: 主轴为竖直方向，main start在其下沿<div
+    class="flex-box train-container"
+    style="
+     width: 60px;
+     height: 150px;
+     flex-direction: column-reverse;
+  "
+>
+  <div class="flex-son train-content">1</div>
+  <div class="flex-son train-content">2</div>
+  <div class="flex-son train-content">3</div>
+</div></li>
+</ul>
+</li>
+<li><strong><em>flex-wrap:</em></strong><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-container</span> &#123;</span><br><span class="line">  <span class="attribute">flexwrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+默认情况下，项目都会排列在主轴上，不换行（即使空间有限），而<code>flex-wrap</code>可以让元素在空间不充足的时候进行换行<ul>
+<li><code>nowrap(默认)</code>: 不换行  <div
+    class="resize-box train-container flex-box"
+    style="
+      width: 380px;
+      height: 60px;
+      resize: horizontal;
+    "
+  >
+    <div class="flex-son train-content">1</div>
+    <div class="flex-son train-content">2</div>
+    <div class="flex-son train-content">3</div>
+    <div class="flex-son train-content">4</div>
+    <div class="flex-son train-content">5</div>
+    <div class="flex-son train-content">6</div>
+    <div class="flex-son train-content">7</div>
+  </div></li>
+<li><code>wrap</code>: 向下换行  <div
+    class="resize-box train-container flex-box"
+    style="
+      width: 320px;
+      height: 120px;
+      resize: horizontal;
+      flex-wrap: wrap;
+    "
+  >
+    <div class="train-content square" >1</div>
+    <div class="train-content square" >2</div>
+    <div class="train-content square" >3</div>
+    <div class="train-content square" >4</div>
+    <div class="train-content square" >5</div>
+    <div class="train-content square" >6</div>
+    <div class="train-content square" >7</div>
+  </div></li>
+<li><code>wrap-reverse</code>: 向上换行  <div
+    class="resize-box train-container flex-box"
+    style="
+      width: 320px;
+      height: 120px;
+      resize: horizontal;
+      flex-wrap: wrap-reverse;
+    "
+  >
+    <div class="train-content square">1</div>
+    <div class="train-content square">2</div>
+    <div class="train-content square">3</div>
+    <div class="train-content square">4</div>
+    <div class="train-content square">5</div>
+    <div class="train-content square">6</div>
+    <div class="train-content square">7</div>
+  </div></li>
+</ul>
+</li>
+<li><strong><em>justify-content:</em></strong><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-container</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around | space-evenly;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+该属性定义项目在主轴上的对齐方式<ul>
+<li><code>flex-start(默认)</code>: 项目向<code>main start</code>处对齐<div class="train-container flex-box" style="width: 450px;justify-content: flex-start;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+</div></li>
+<li><code>flex-end</code>: 项目向<code>main end</code>处对齐<div class="train-container flex-box" style="width: 450px;justify-content: flex-end;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+</div></li>
+<li><code>center</code>: 项目居中对齐<div class="train-container flex-box" style="width: 450px;justify-content: center;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+</div></li>
+<li><code>space-between</code>: 项目两端对齐<div class="train-container flex-box" style="width: 450px;justify-content: space-between;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+</div></li>
+<li><code>space-around</code>: 项目均匀分布，项目周围有相等的空间<div class="train-container flex-box" style="width: 450px;justify-content: space-around;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+  <div class="train-content square">4</div>
+</div></li>
+<li><code>space-evenly</code>: 项目均匀分布，且每个项目周围的空间都相等<div class="train-container flex-box" style="width: 450px;justify-content: space-evenly;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+  <div class="train-content square">4</div>
+</div></li>
+</ul>
+</li>
+<li><strong><em>align-items:</em></strong><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-container</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+该属性定义项目在交叉轴上的对齐方式<ul>
+<li><code>flex-start</code>: 项目向<code>cross start</code>对齐<div class="train-container flex-box" style="width: 180px; height: 150px;align-items: flex-start;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+</div></li>
+<li><code>flex-end</code>: 项目向<code>cross end</code>对齐<div class="train-container flex-box" style="width: 180px; height: 150px;align-items: flex-end;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+</div></li>
+<li><code>center</code>: 项目在交叉轴上居中对齐<div class="train-container flex-box" style="width: 180px; height: 150px;align-items: center;">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+</div></li>
+<li><code>stretch（默认）</code>: 项目的高度没有定义或高度设置为auto时，将撑满交叉轴的高度（cross size）<div class="train-container flex-box resize-box" style="width: 180px;align-items: stretch;resize: vertical;">
+  <div class="train-content" style="width: 50px">1</div>
+  <div class="train-content" style="width: 50px">2</div>
+  <div class="train-content" style="width: 50px">3</div>
+</div>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h2><ul>
+<li><p><strong><em>order:</em></strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-item</span>: &#123;</span><br><span class="line">  <span class="attribute">order</span>: <span class="number">2</span>; <span class="comment">/* 默认为0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该属性定义项目的排列顺序，数值越小，排列越靠前</p>
+<div class="train-container flex-box" style="width: 350px;height: 60px">
+  <div class="train-content square">1</div>
+  <div class="train-content square" style="order: 1">2</div>
+  <div class="train-content square">3</div>
+  <div class="train-content square" style="order: -1;">4</div>
+  <div class="train-content square">5</div>
+  <div class="train-content square">6</div>
+</div>
+此实例部分代码如下：
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"train-container flex-box"</span> <span class="attr">style</span>=<span class="string">"width: 350px;height: 60px"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span> 1 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"order: 1"</span>&gt;</span> 2 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"order: -1;"</span>&gt;</span> 4 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span> 5 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span> 6 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong><em>flex-grow:</em></strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: <span class="number">2</span>;  <span class="comment">/* 默认为0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义项目的在有充足空间时的放大比例，默认为0（不放大）</p>
+<div class="train-container flex-box resize-box" style="height: 60px; resize: Horizontal">
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square">3</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="train-container flex-box resize-box" style="height: 60px; resize: Horizontal">
+  <div class="train-content square">1</div>
+  <div class="train-content square" style="flex-grow: 1">2</div>
+  <div class="train-content square">3</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex-grow: 1"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>每个设定了<code>flex-grow</code>大小（不为0）的项目会在有剩余空间时按比例分配空间，如下面的1号及2号项目的flex-grow的值为1，将会分配到相等大小的空间，而3号项目的flex-grow的值为2，分配的空间大小将会是1号及2号项目的两倍</p>
+<div class="train-container flex-box resize-box" style="height: 60px; resize: Horizontal;">
+  <div class="train-content square" style="flex-grow: 1;">1</div>
+  <div class="train-content square" style="flex-grow: 1;">2</div>
+  <div class="train-content square" style="flex-grow: 2;">3</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex-grow: 1;"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex-grow: 1;"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex-grow: 2;"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong><em>flex-shrink:</em></strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: <span class="number">0</span>; <span class="comment">/* 默认为1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该属性能定义项目在容器空间不充足时是否缩放，默认为1（缩放）。当<code>flex-shrink</code>不为0时，项目将在容器空间不充足时缩放。<code>flex-shrink</code>的值越大，缩放的就越多。</p>
+<div class="train-container flex-box resize-box" style="width: 150px;height: 60px; resize: Horizontal;">
+  <div class="train-content square" style="flex-shrink: 0;">1</div>
+  <div class="train-content square" style="flex-shrink: 1;">2</div>
+  <div class="train-content square" style="flex-shrink: 2;">3</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex-shrink: 0;"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex-shrink: 1;"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex-shrink: 2;"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong><em>align-self:</em></strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-item</span>: &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该属性能使项目在采用与其他项目不一样的对齐方式。默认为<code>auto</code>，即继承容器定义的<code>align-items</code>的对齐方式</p>
+<div class="flex-box train-container" style="width: 250px;height: 150px;align-items: center" >
+  <div class="train-content square">1</div>
+  <div class="train-content square">2</div>
+  <div class="train-content square" style="align-self: flex-end">3</div>
+  <div class="train-content square">4</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-box"</span> <span class="attr">style</span>=<span class="string">"align-items: center;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"align-self: flex-end"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-10-16</span><i class="fa fa-tag"></i><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://jungbey.xyz/2020/10/16/2020-10-16/,Jungbey' target="_blank" rel="noopener"s blog,研发培训-Flex布局,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/10/10/2020-10-10/" title="使用Hexo搭建博客并部署到github pages">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
