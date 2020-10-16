@@ -1,0 +1,414 @@
+---
+title: 研发培训-Flex布局
+tags:
+---
+
+>参考链接： [MDN | 弹性盒子](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Flexbox)、[Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)、[A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+本文中部分内容也援引自上述文章
+
+## 介绍
+
+Flex 布局模块目标在于提供一个更有效地布局、对齐方式，并且能够使父元素在子元素的大小未知或动态变化情况下仍然能够分配好子元素之间的间隙。
+
+其主要思想是使父元素能够调节子元素的高度、宽度和排布的顺序，从而能够最好地适应可用布局空间（能够适应不同的设备和不同大小的屏幕）。设定为flex布局的父元素（容器）能够放大子元素使之尽可能填充可用空间，也可以收缩子元素使之不溢出。
+
+<style>
+  .container {
+    margin: 10px 0;
+    border: 3px solid #e0dfcc;
+    background: #f5f2f0;
+    border-radius: 10px;
+  }
+
+  .content {
+    margin: 5px;
+    color: #FFF;
+    border-radius: 5px;
+    background: rgb(236, 169, 33);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .square {
+    width: 50px;
+    height: 50px;
+  }
+
+  .resize-box {
+    width: 400px;
+    min-width: 100px;
+    max-width: 500px;
+    height: 120px;
+    min-height: 50px;
+    max-height: 500px;
+    padding: 10px;
+    resize: both;
+    overflow: auto;
+  }
+
+  .flex-box {
+    display: flex;
+  }
+
+  .flex-son {
+    flex: 60px;
+    height: 50px;
+  }
+
+</style>
+
+<div
+class="resize-box flex-box container"
+style="
+  width: 500px;
+  align-items: center;
+  flex-flow: row wrap;
+  "
+>
+  <div class="content" style="flex: 60px;height: 50px" >1</div>
+  <div class="content" style="flex: 60px;height: 50px" >2</div>
+  <div class="content" style="flex: 30px;height: 50px" >3</div>
+  <div class="content" style="flex: 60px;height: 50px" >4</div>
+  <div class="content" style="flex: 80px;height: 50px" >5</div>
+  <div class="content" style="flex: 60px;height: 50px" >6</div>
+  <div class="content" style="flex: 60px;height: 50px" >7</div>
+  <div class="content" style="flex: 60px;height: 50px" >8</div>
+</div>
+
+## 基本概念
+Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+
+任何容器都能被指定为Flex布局：
+
+``` css
+  .container {
+    display: flex;
+  }
+```
+
+采用Flex布局元素被称为`flex 容器(flex container)`, 简称`容器`，它的子元素被成为`flex 项目(flex item)`, 简称`项目`。
+
+![图解](https://css-tricks.com/wp-content/uploads/2018/11/00-basic-terminology.svg)
+
+容器默认存在两个轴，`主轴`及`交叉轴`。
+项目将沿着`主轴`(从`main-start`到`main-end`)或者`交叉轴`(从`cross-start`到`cross-end`)进行排列(默认沿着主轴排列)。
+__主轴(main-axis)__: 子元素布局的主要方向轴，不一定是水平的，它取决于`flex-direction`属性；
+__交叉轴(cross axis)__: 垂直于主轴的轴被称为交叉轴，其方向取决于主轴的方向；
+
+## 容器属性
+
+* ***flex-direction:***
+  ``` css
+    .flex-container {
+      flex-dorection: row | row-reverse | column | column-reverse;
+    }
+  ```
+  此属性能建立主轴的方向，由此来定义项目在容器内的排列方向
+  * `row`：主轴为水平方向，main start 在其左端
+    <div
+        class="flex-box container"
+        style="
+         width: 200px;
+         height: 60px;
+         flex-direction: row;
+      "
+    >
+      <div class="flex-son content">1</div>
+      <div class="flex-son content">2</div>
+      <div class="flex-son content">3</div>
+    </div>
+  * `row-reverse`: 主轴为水平方向，main start在其右端
+    <div
+        class="flex-box container"
+        style="
+         width: 200px;
+         height: 60px;
+         flex-direction: row-reverse;
+      "
+    >
+      <div class="flex-son content">1</div>
+      <div class="flex-son content">2</div>
+      <div class="flex-son content">3</div>
+    </div>
+  * `column`: 主轴为竖直方向，main start在其上沿
+    <div
+        class="flex-box container"
+        style="
+         width: 60px;
+         height: 150px;
+         flex-direction: column;
+      "
+    >
+      <div class="flex-son content">1</div>
+      <div class="flex-son content">2</div>
+      <div class="flex-son content">3</div>
+    </div>
+  * `column-reverse`: 主轴为竖直方向，main start在其下沿
+    <div
+        class="flex-box container"
+        style="
+         width: 60px;
+         height: 150px;
+         flex-direction: column-reverse;
+      "
+    >
+      <div class="flex-son content">1</div>
+      <div class="flex-son content">2</div>
+      <div class="flex-son content">3</div>
+    </div>
+* ***flex-wrap:***
+  ``` css
+    .flex-container {
+      flexwrap: nowrap | wrap | wrap-reverse;
+    }
+  ```
+  默认情况下，项目都会排列在主轴上，不换行（即使空间有限），而`flex-wrap`可以让元素在空间不充足的时候进行换行
+  * `nowrap(默认)`: 不换行
+      <div
+        class="resize-box container flex-box"
+        style="
+          width: 380px;
+          height: 60px;
+          resize: horizontal;
+        "
+      >
+        <div class="flex-son content">1</div>
+        <div class="flex-son content">2</div>
+        <div class="flex-son content">3</div>
+        <div class="flex-son content">4</div>
+        <div class="flex-son content">5</div>
+        <div class="flex-son content">6</div>
+        <div class="flex-son content">7</div>
+      </div>
+  * `wrap`: 向下换行
+      <div
+        class="resize-box container flex-box"
+        style="
+          width: 320px;
+          height: 120px;
+          resize: horizontal;
+          flex-wrap: wrap;
+        "
+      >
+        <div class="content square" >1</div>
+        <div class="content square" >2</div>
+        <div class="content square" >3</div>
+        <div class="content square" >4</div>
+        <div class="content square" >5</div>
+        <div class="content square" >6</div>
+        <div class="content square" >7</div>
+      </div>
+  * `wrap-reverse`: 向上换行
+      <div
+        class="resize-box container flex-box"
+        style="
+          width: 320px;
+          height: 120px;
+          resize: horizontal;
+          flex-wrap: wrap-reverse;
+        "
+      >
+        <div class="content square">1</div>
+        <div class="content square">2</div>
+        <div class="content square">3</div>
+        <div class="content square">4</div>
+        <div class="content square">5</div>
+        <div class="content square">6</div>
+        <div class="content square">7</div>
+      </div>
+* ***justify-content:***
+  ``` css
+    .flex-container {
+      justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;
+    }
+  ```
+  该属性定义项目在主轴上的对齐方式
+  * `flex-start(默认)`: 项目向`main start`处对齐
+    <div class="container flex-box" style="width: 450px;justify-content: flex-start;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+    </div>
+  * `flex-end`: 项目向`main end`处对齐
+    <div class="container flex-box" style="width: 450px;justify-content: flex-end;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+    </div>
+  * `center`: 项目居中对齐
+    <div class="container flex-box" style="width: 450px;justify-content: center;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+    </div>
+  * `space-between`: 项目两端对齐
+    <div class="container flex-box" style="width: 450px;justify-content: space-between;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+    </div>
+  * `space-around`: 项目均匀分布，项目周围有相等的空间
+    <div class="container flex-box" style="width: 450px;justify-content: space-around;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+      <div class="content square">4</div>
+    </div>
+  * `space-evenly`: 项目均匀分布，且每个项目周围的空间都相等
+    <div class="container flex-box" style="width: 450px;justify-content: space-evenly;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+      <div class="content square">4</div>
+    </div>
+* ***align-items:***
+  ``` css
+    .flex-container {
+      align-items: flex-start | flex-end | center | stretch;
+    }
+  ```
+  该属性定义项目在交叉轴上的对齐方式
+  * `flex-start`: 项目向`cross start`对齐
+    <div class="container flex-box" style="width: 180px; height: 150px;align-items: flex-start;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+    </div>
+  * `flex-end`: 项目向`cross end`对齐
+    <div class="container flex-box" style="width: 180px; height: 150px;align-items: flex-end;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+    </div>
+  * `center`: 项目在交叉轴上居中对齐
+    <div class="container flex-box" style="width: 180px; height: 150px;align-items: center;">
+      <div class="content square">1</div>
+      <div class="content square">2</div>
+      <div class="content square">3</div>
+    </div>
+  * `stretch（默认）`: 项目的高度没有定义或高度设置为auto时，将撑满交叉轴的高度（cross size）
+    <div class="container flex-box resize-box" style="width: 180px;align-items: stretch;resize: vertical;">
+      <div class="content" style="width: 50px">1</div>
+      <div class="content" style="width: 50px">2</div>
+      <div class="content" style="width: 50px">3</div>
+    </div>
+
+## 项目属性
+
+* ***order:***
+  ``` css
+  .flex-item: {
+    order: 2; /* 默认为0 */
+  }
+  ```
+  该属性定义项目的排列顺序，数值越小，排列越靠前
+  <div class="container flex-box" style="width: 350px;height: 60px">
+    <div class="content square">1</div>
+    <div class="content square" style="order: 1">2</div>
+    <div class="content square">3</div>
+    <div class="content square" style="order: -1;">4</div>
+    <div class="content square">5</div>
+    <div class="content square">6</div>
+  </div>
+  此实例部分代码如下：
+``` html
+  <div class="container flex-box" style="width: 350px;height: 60px">
+    <div> 1 </div>
+    <div style="order: 1"> 2 </div>
+    <div>3</div>
+    <div style="order: -1;"> 4 </div>
+    <div> 5 </div>
+    <div> 6 </div>
+  </div>
+```
+* ***flex-grow:***
+  ``` css
+  .flex-item {
+    flex-grow: 2;  /* 默认为0 */
+  }
+  ```
+  定义项目的在有充足空间时的放大比例，默认为0（不放大）
+  <div class="container flex-box resize-box" style="height: 60px; resize: Horizontal">
+    <div class="content square">1</div>
+    <div class="content square">2</div>
+    <div class="content square">3</div>
+  </div>
+
+  ``` html
+  <div class="flex-box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+  ```
+  <div class="container flex-box resize-box" style="height: 60px; resize: Horizontal">
+    <div class="content square">1</div>
+    <div class="content square" style="flex-grow: 1">2</div>
+    <div class="content square">3</div>
+  </div>
+
+  ``` html
+  <div class="flex-box">
+    <div>1</div>
+    <div style="flex-grow: 1">2</div>
+    <div>3</div>
+  </div>
+  ```
+
+  每个设定了`flex-grow`大小（不为0）的项目会在有剩余空间时按比例分配空间，如下面的1号及2号项目的flex-grow的值为1，将会分配到相等大小的空间，而3号项目的flex-grow的值为2，分配的空间大小将会是1号及2号项目的两倍
+  <div class="container flex-box resize-box" style="height: 60px; resize: Horizontal;">
+    <div class="content square" style="flex-grow: 1;">1</div>
+    <div class="content square" style="flex-grow: 1;">2</div>
+    <div class="content square" style="flex-grow: 2;">3</div>
+  </div>
+
+  ``` html
+  <div class="flex-box">
+    <div style="flex-grow: 1;">1</div>
+    <div style="flex-grow: 1;">2</div>
+    <div style="flex-grow: 2;">3</div>
+  </div>
+  ```
+* ***flex-shrink:***
+  ``` css
+    .flex-item {
+      flex-shrink: 0; /* 默认为1 */
+    }
+  ```
+  该属性能定义项目在容器空间不充足时是否缩放，默认为1（缩放）。当`flex-shrink`不为0时，项目将在容器空间不充足时缩放。`flex-shrink`的值越大，缩放的就越多。
+  <div class="container flex-box resize-box" style="width: 150px;height: 60px; resize: Horizontal;">
+    <div class="content square" style="flex-shrink: 0;">1</div>
+    <div class="content square" style="flex-shrink: 1;">2</div>
+    <div class="content square" style="flex-shrink: 2;">3</div>
+  </div>
+
+  ``` html
+  <div class="flex-box">
+    <div style="flex-shrink: 0;">1</div>
+    <div style="flex-shrink: 1;">2</div>
+    <div style="flex-shrink: 2;">3</div>
+  </div>
+  ```
+* ***align-self:***
+  ``` css
+    .flex-item: {
+      align-self: auto | flex-start | flex-end | center;
+    }
+  ```
+  该属性能使项目在采用与其他项目不一样的对齐方式。默认为`auto`，即继承容器定义的`align-items`的对齐方式
+  <div class="flex-box container" style="width: 250px;height: 150px;align-items: center" >
+    <div class="content square">1</div>
+    <div class="content square">2</div>
+    <div class="content square" style="align-self: flex-end">3</div>
+    <div class="content square">4</div>
+  </div>
+
+  ``` html
+  <div class="flex-box" style="align-items: center;">
+    <div>1</div>
+    <div>2</div>
+    <div style="align-self: flex-end">3</div>
+    <div>4</div>
+  </div>
+  ```
