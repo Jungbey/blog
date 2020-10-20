@@ -402,6 +402,7 @@ style="
     height: 20px;
     border-radius: 50%;
     background: #000;
+    animation: blink 2s ease-in-out infinite;
   }
 
   .mouth {
@@ -419,6 +420,36 @@ style="
     display: flex;
     justify-content: space-around;
   }
+
+  .train-btn {
+    width: 80px;
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    background: #AEC;
+    color: #000;
+    cursor: pointer;
+  }
+
+  @keyframes blink {
+      45% {
+        height: 20px;
+        border-radius: 50%;
+        transform: translateY(0);
+      }
+      50% {
+        /* width: 50px; */
+        height: 0px;
+        border-radius: 50%;
+        /* transform: translateY(-10px); */
+      }
+      55% {
+        height: 20px;
+        border-radius: 50%;
+        transform: translateY(0);
+      }
+    }
+
 </style>
 <script>
   function smile() {
@@ -438,7 +469,7 @@ style="
   <div id="mouth" class="mouth"></div>
 </div>
 <div class="button-container">
-  <button onclick="smile()" >给爷笑</button>
-  <button onclick="stopSmile()">别笑了</button>
+  <button class="train-btn" onclick="smile()" >给爷笑</button>
+  <button class="train-btn" onclick="stopSmile()">别笑了</button>
 </div>
 </div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-10-16</span><i class="fa fa-tag"></i><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://jungbey.xyz/2020/10/16/2020-10-16/,Jungbey' target="_blank" rel="noopener"s blog,研发培训-Flex布局及JS基础,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/10/10/2020-10-10/" title="使用Hexo搭建博客并部署到github pages">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
